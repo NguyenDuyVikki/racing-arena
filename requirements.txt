@@ -1,0 +1,10 @@
+# Racing Arena Requirements
+# Python 3.7+ required
+
+# No external dependencies - uses only Python standard library
+# socket, select, time, random, json, typing, threading, unittest
+
+# For development/testing (optional):
+# pytest>=6.0.0
+# black>=21.0.0
+# flake8>=3.9.0
