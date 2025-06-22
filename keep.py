@@ -57,7 +57,7 @@ class RacingServer:
         self.current_expression = None
         self.current_answer = None
         self.round_start_time = None
-        self.time_limit = 100.0  # seconds
+        self.time_limit = 10.0  # seconds
         self.responses: Dict[socket.socket, Tuple[float, str]] = {}  # socket: (time, answer)
         self.round_number = 0
 
@@ -272,6 +272,7 @@ class RacingServer:
         for client in self.clients.values():
             standings += f"\n{client['nickname']} → {client['position']}"
         self.broadcast(standings)
+        
         self.new_round()
 
     def reset_game(self):
@@ -319,6 +320,7 @@ class RacingClient:
                 self.nickname = None
                 self.waiting_for_answer = False
                 self.buffer = ""  # Buffer for incomplete messages
+                
                 if attempt_port != original_port:
                     print(f"Connected to server on port {attempt_port}")
                 connection_successful = True
