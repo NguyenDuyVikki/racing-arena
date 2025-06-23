@@ -1,6 +1,3 @@
-"""
-Game state management for Racing Arena
-"""
 import random
 import time
 from typing import Dict, List, Tuple
@@ -42,7 +39,7 @@ class GameState:
         """Start a new round"""
         self.responses.clear()
         self.current_expression, self.current_answer = self.expression_generator.generate()
-        self.round_start_time = time.time()
+        self.round_start_time = time.time() + 5
         self.round_number += 1
         print(f"[Round {self.round_number}]")
         print(f"Sent expression: {self.current_expression}")
@@ -54,7 +51,6 @@ class GameState:
         return time.time() - self.round_start_time >= self.time_limit
     
     def add_response(self, client_socket, answer: str):
-        """Add a player response"""
         self.responses[client_socket] = (time.time(), answer)
     
     def has_winner(self, players: Dict) -> Player:

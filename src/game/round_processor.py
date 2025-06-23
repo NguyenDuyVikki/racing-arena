@@ -36,9 +36,17 @@ class RoundProcessor:
                 
             player = players[sock]
             try:
-                user_answer = int(answer)
-                is_correct = user_answer == game_state.current_answer
-            except ValueError:
+                # Ensure robust type conversion and comparison
+                answer_stripped = str(answer).strip()
+                if not answer_stripped:
+                    is_correct = False
+                else:
+                    user_answer = int(answer_stripped)
+                    correct_answer = int(game_state.current_answer)
+                    is_correct = user_answer == correct_answer
+                    
+            except (ValueError, TypeError, AttributeError) as e:
+                print(f"[DEBUG] Error converting answer '{answer}' for player {player.nickname}: {e}")
                 is_correct = False
 
             response_delay = response_time - game_state.round_start_time
@@ -120,6 +128,7 @@ class RoundProcessor:
                 response_time, answer = game_state.responses[sock]
                 try:
                     user_answer = int(answer)
+                    is_correct = True
                     is_correct = user_answer == game_state.current_answer
                     if is_correct:
                         # Find if this was the fastest correct answer
