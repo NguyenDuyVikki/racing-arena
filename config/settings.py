@@ -22,7 +22,10 @@ OPERATORS = ['+', '-', '*', '/', '%']
 
 # Network settings
 BUFFER_SIZE = 1024
-SELECT_TIMEOUT = 0.1
+SELECT_TIMEOUT = 0.05  # 50ms timeout for optimal responsiveness without CPU waste
+SOCKET_TIMEOUT = 30.0  # Individual socket timeout for long operations
+MAX_MESSAGE_SIZE = 4096  # Maximum message size to prevent memory issues
+CONNECTION_BACKLOG = 10  # Listen queue size for pending connections
 
 # Scoring settings
 BASE_POINTS = 1

@@ -72,10 +72,10 @@ class RacingClient:
                     self.buffer, messages = process_client_data(self.buffer, data)
                     for msg in messages:
                         message = msg["message"]
-                        print(message)
                         
                         # Handle nickname retry scenarios
                         if not registered and ("already taken" in message or "cannot be empty" in message or "invalid" in message):
+                            print(message)
                             # Ask for a new nickname
                             new_nickname = input("Enter a different nickname: ").strip()
                             if not new_nickname:
@@ -88,9 +88,38 @@ class RacingClient:
                         # Check if registration is successful
                         if "Registration Completed Successfully" in message:
                             registered = True
+                            print("> Registration Completed Successfully")
+                            print("Waiting for other players...")
+                            continue
                         
+                        # Handle race start message
+                        if "Race Started!" in message:
+                            print(message)
+                            continue
+                        
+                        # Handle position updates
+                        if "Your position:" in message:
+                            print(message)
+                            continue
+                        
+                        # Handle round messages  
+                        if message.startswith("[Round"):
+                            print(message)
+                            continue
+                        
+                        # Handle solve expressions
                         if "Solve:" in message:
+                            print(message)
                             self.waiting_for_answer = True
+                            continue
+                        
+                        # Handle result messages (correct/incorrect)
+                        if ("Correct!" in message or "Incorrect!" in message or "Time's up!" in message):
+                            print(message)
+                            continue
+                        
+                        # Print other messages as-is
+                        print(message)
                         
                 except json.JSONDecodeError as e:
                     print(f"Error parsing server message: {e}")
