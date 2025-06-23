@@ -1,6 +1,3 @@
-"""
-Racing Arena Server implementation
-"""
 import socket
 import select
 import time
@@ -51,10 +48,6 @@ class RacingServer:
         self.game_state = GameState()
 
     def broadcast(self, message: str):
-        """
-        Non-blocking broadcast to all clients.
-        Failed sends don't block other clients or the game loop.
-        """
         message_data = create_message(message)
         print(f"[Server] Broadcasting message: {message}")
         failed_clients = []
@@ -120,10 +113,6 @@ class RacingServer:
             self._shutdown()
 
     def _handle_new_connection(self):
-        """
-        Handle new client connections with non-blocking accept().
-        Multiple connections can be accepted in a single loop iteration.
-        """
         try:
             # Handle multiple pending connections in one go
             while True:
@@ -164,10 +153,6 @@ class RacingServer:
             print(f"[Server] Error in connection handling: {e}")
 
     def _handle_client_data(self, sock: socket.socket):
-        """
-        Handle client data with proper non-blocking read and buffering.
-        Handles partial messages and multiple messages in one read.
-        """
         try:
             # Non-blocking read with proper error handling
             data = sock.recv(BUFFER_SIZE).decode('utf-8')
