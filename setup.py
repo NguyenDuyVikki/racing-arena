@@ -35,7 +35,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "racing-arena=race:main",
+            "racing-arena=main:main",
         ],
     },
     include_package_data=True,

@@ -42,7 +42,39 @@ Racing Arena is a competitive multiplayer math game featuring:
 - **Terminal/Command Line**: Cross-platform terminal access
 - **Network**: Local or network connectivity for multiplayer sessions
 
-## 🛠️ Quick Start
+## 🚀 Quick Start (2 Simple Steps!)
+
+### Step 1: Start the Server
+```bash
+# Option 1: Using the interactive menu
+python main.py
+# Then choose option 1
+
+# Option 2: Direct command
+python main.py --mode server
+
+# Option 3: Using Makefile
+make server
+```
+
+### Step 2: Start the Client (in a new terminal)
+```bash
+# Option 1: Using the interactive menu
+python main.py
+# Then choose option 2
+
+# Option 2: Direct command
+python main.py --mode client
+
+# Option 3: Using Makefile
+make client
+```
+
+That's it! 🎉 The game will start automatically when enough players join.
+
+---
+
+## 🛠️ Detailed Setup
 
 ### 1. Installation
 ```bash

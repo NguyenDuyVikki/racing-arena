@@ -1,41 +1,25 @@
 # Racing Arena Makefile
 
-.PHONY: help server client test test-client clean install dev-install
+.PHONY: help server client clean install
 
 help:
 	@echo "Racing Arena - Available commands:"
 	@echo "  make server      - Start the Racing Arena server"
 	@echo "  make client      - Start a Racing Arena client"
-	@echo "  make test        - Run unit tests"
-	@echo "  make test-client - Run automated test clients"
 	@echo "  make install     - Install the package"
-	@echo "  make dev-install - Install in development mode"
 	@echo "  make clean       - Clean up generated files"
 
 server:
 	@echo "Starting Racing Arena Server..."
-	python race.py server
+	python main.py --mode server
 
 client:
 	@echo "Starting Racing Arena Client..."
-	python race.py
-
-test:
-	@echo "Running unit tests..."
-	python tests/test_game.py
-
-test-client:
-	@echo "Running automated test clients..."
-	@echo "Make sure the server is running first!"
-	python tests/test_client.py
+	python main.py --mode client
 
 install:
 	@echo "Installing Racing Arena..."
 	pip install .
-
-dev-install:
-	@echo "Installing Racing Arena in development mode..."
-	pip install -e .
 
 clean:
 	@echo "Cleaning up..."
