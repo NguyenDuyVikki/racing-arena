@@ -9,7 +9,7 @@ MIN_CLIENTS = 2
 # Game settings
 MIN_TRACK_LENGTH = 4
 MAX_TRACK_LENGTH = 10
-TIME_LIMIT = 10.0  # seconds per round
+TIME_LIMIT = 15.0  # seconds per round
 MAX_WRONG_STREAK = 3  # disqualification threshold
 
 # Math expression settings
